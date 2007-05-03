@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -20,6 +20,7 @@ Patch3:		less-382-fixline.patch.bz2
 Patch4:		less-392-Foption.patch.bz2
 #gw we don't have o3read, use the filter that comes with lesspipe
 Patch5:		lesspipe-1.53-no-o3read.patch.bz2
+Patch6:		lesspipe-1.53-lzma-support.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
@@ -41,13 +42,14 @@ cd lesspipe-%less_p_vers
 %patch1 -p1
 %patch2 -p1
 %patch5 -p1
+%patch6 -p0 -b .lzma
 cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
 chmod a+r lesspipe-%less_p_vers/*
 
 %build
-CFLAGS=$(echo "$RPM_OPT_FLAGS -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
+CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
 %configure2_5x
 %make 
 cd lesspipe-%less_p_vers
@@ -55,12 +57,12 @@ cd lesspipe-%less_p_vers
 cd ..
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall
 # faq
-install -m 644 %SOURCE1 .
+install -m 644 %{SOURCE1} .
 cd lesspipe-%less_p_vers
-%makeinstall PREFIX=%buildroot%_prefix
+%makeinstall PREFIX=%{buildroot}%{_prefix}
 cd ..
 mkdir -p %buildroot%_sysconfdir/profile.d/
 cat << EOF > %buildroot%_sysconfdir/profile.d/less.sh
@@ -96,7 +98,7 @@ cat << EOF > README.mdk
 This version of less includes lesspipe.sh from Wolfgang Friebel
 ( http://www-zeuthen.desy.de/~friebel//unix/less/ ).
 
-This enables you to view gz, zip, rpm and html files
+This enables you to view gz, bz2, lzma, zip, rpm and html files
 among others with less. It works by setting the LESSOPEN 
 environment variable, see the man pages for details.
 
@@ -107,16 +109,16 @@ less will open html files with lynx, then html2text, then cat if
 none of the previous were found.
 EOF
 
-install -m 644 lessecho.1 $RPM_BUILD_ROOT%_mandir/man1
+install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
+
+%clean
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc faq_less.html lesspipe-%less_p_vers/{BUGS,COPYING,ChangeLog,README,english.txt,german.txt}
 %doc README.mdk
 
-%attr(755,root,root)%_bindir/*
-%_mandir/man1/*
-%attr(755,root,root)%_sysconfdir/profile.d/*
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
+%attr(755,root,root) %{_sysconfdir}/profile.d/*
