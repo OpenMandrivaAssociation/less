@@ -10,7 +10,7 @@ License:	GPL
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
 BuildRequires:	ncurses-devel
-Source0:	ftp://ftp.gnu.org/pub/gnu/less/%{name}-%{version}.tar.bz2
+Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.bz2
 Source1:	faq_less.html
 Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.bz2
 Patch0:		less-374-manpages.patch
