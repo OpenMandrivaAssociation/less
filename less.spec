@@ -1,5 +1,5 @@
 %define	name	less
-%define	version	406
+%define	version	408
 %define less_p_vers 1.53
 
 Summary:	A text file browser similar to more, but better
