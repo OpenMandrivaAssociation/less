@@ -1,16 +1,16 @@
 %define	name	less
-%define	version	415
+%define	version	416
 %define less_p_vers 1.53
 
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 2
-License:	GPL
+Release:	%mkrel 1
+License:	GPLv2+
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
-BuildRequires:	ncurses-devel
-Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.bz2
+BuildRequires:	libncursesw-devel
+Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
 Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.bz2
 Patch0:		less-374-manpages.patch
@@ -21,7 +21,6 @@ Patch4:		less-392-Foption.patch
 #gw we don't have o3read, use the filter that comes with lesspipe
 Patch5:		lesspipe-1.53-no-o3read.patch
 Patch6:		lesspipe-1.53-lzma-support.patch
-Patch7:		less-fix-utf-crash.diff
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
@@ -47,7 +46,6 @@ cd lesspipe-%less_p_vers
 cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
-%patch7 -p0 -b .crash
 chmod a+r lesspipe-%less_p_vers/*
 
 %build
