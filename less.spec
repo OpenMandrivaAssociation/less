@@ -21,7 +21,6 @@ Patch4:		less-392-Foption.patch
 #gw we don't have o3read, use the filter that comes with lesspipe
 Patch5:		lesspipe-1.53-no-o3read.patch
 Patch6:		lesspipe-1.53-lzma-support.patch
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
 
