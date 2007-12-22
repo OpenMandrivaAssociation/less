@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -92,7 +92,7 @@ endif
 setenv LESSOPEN "|/usr/bin/lesspipe.sh %s"
 EOF
 
-cat << EOF > README.mdk
+cat << EOF > README.urpmi
 This version of less includes lesspipe.sh from Wolfgang Friebel
 ( http://www-zeuthen.desy.de/~friebel//unix/less/ ).
 
@@ -115,8 +115,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc faq_less.html lesspipe-%less_p_vers/{BUGS,COPYING,ChangeLog,README,english.txt,german.txt}
-%doc README.mdk
-
+%doc README.urpmi
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
