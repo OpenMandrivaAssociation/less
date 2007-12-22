@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -65,8 +65,7 @@ cd lesspipe-%less_p_vers
 %makeinstall PREFIX=%{buildroot}%{_prefix}
 cd ..
 mkdir -p %buildroot%_sysconfdir/profile.d/
-cat << EOF > %buildroot%_sysconfdir/profile.d/less.sh
-#!/bin/sh
+cat << EOF > %buildroot%_sysconfdir/profile.d/20less.sh
 CHARSET=\$(locale charmap 2> /dev/null) 
 case "\$CHARSET" in 
        UTF-8) 
@@ -80,8 +79,7 @@ esac
 export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 EOF
 
-cat << EOF > %buildroot%_sysconfdir/profile.d/less.csh
-#!/bin/csh
+cat << EOF > %buildroot%_sysconfdir/profile.d/20less.csh
 if ! ( \$?LESSCHARSET ) then
 	set CHARSET=\`locale charmap\`
 	if ( "\$CHARSET" == "UTF-8" ) then
@@ -121,4 +119,4 @@ rm -rf %{buildroot}
 
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
-%attr(755,root,root) %{_sysconfdir}/profile.d/*
+%{_sysconfdir}/profile.d/*
