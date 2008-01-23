@@ -1,12 +1,12 @@
 %define	name	less
-%define	version	416
+%define	version	418
 %define less_p_vers 1.53
 
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 3
-License:	GPLv2+
+Release:	%mkrel 1
+License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
 BuildRequires:	libncursesw-devel
