@@ -1,20 +1,19 @@
 %define	name	less
 %define	version	418
-%define less_p_vers 1.53
+%define less_p_vers 1.54
 
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
 BuildRequires:	libncursesw-devel
 Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
-Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.bz2
+Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.gz
 Patch0:		less-374-manpages.patch
-Patch1:		lesspipe.lynx_for_html.patch
 Patch2:		lesspipe-1.53-posix.patch
 Patch3:		less-382-fixline.patch
 Patch4:		less-392-Foption.patch
@@ -39,7 +38,6 @@ files, and you'll use it frequently.
 %setup -q -a 2
 %patch0 -p1
 cd lesspipe-%less_p_vers
-%patch1 -p1
 %patch2 -p1
 %patch5 -p1
 %patch6 -p0 -b .lzma
