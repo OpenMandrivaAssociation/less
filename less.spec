@@ -1,11 +1,11 @@
 %define	name	less
 %define	version	418
-%define less_p_vers 1.54
+%define less_p_vers 1.55
 
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -18,8 +18,7 @@ Patch2:		lesspipe-1.53-posix.patch
 Patch3:		less-382-fixline.patch
 Patch4:		less-392-Foption.patch
 #gw we don't have o3read, use the filter that comes with lesspipe
-Patch5:		lesspipe-1.53-no-o3read.patch
-Patch6:		lesspipe-1.53-lzma-support.patch
+Patch5:		lesspipe-1.55-no-o3read.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
@@ -40,7 +39,6 @@ files, and you'll use it frequently.
 cd lesspipe-%less_p_vers
 %patch2 -p1
 %patch5 -p1
-%patch6 -p0 -b .lzma
 cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
