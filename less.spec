@@ -1,11 +1,11 @@
 %define	name	less
 %define	version	418
-%define less_p_vers 1.55
+%define less_p_vers 1.60
 
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -14,11 +14,11 @@ Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
 Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.gz
 Patch0:		less-374-manpages.patch
-Patch2:		lesspipe-1.53-posix.patch
+Patch2:		lesspipe-1.60-posix.patch
 Patch3:		less-382-fixline.patch
 Patch4:		less-392-Foption.patch
 #gw we don't have o3read, use the filter that comes with lesspipe
-Patch5:		lesspipe-1.55-no-o3read.patch
+Patch5:		lesspipe-1.60-no-o3read.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
@@ -43,6 +43,7 @@ cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
 chmod a+r lesspipe-%less_p_vers/*
+cp lesspipe-%less_p_vers/README README.lesspipe
 
 %build
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
@@ -105,12 +106,17 @@ EOF
 
 install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 
+%check
+cd lesspipe-%less_p_vers
+make test
+
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc faq_less.html lesspipe-%less_p_vers/{BUGS,COPYING,ChangeLog,README,english.txt,german.txt}
+%doc README NEWS README.lesspipe
+%doc faq_less.html lesspipe-%less_p_vers/{ChangeLog,german.txt,TODO}
 %doc README.urpmi
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
