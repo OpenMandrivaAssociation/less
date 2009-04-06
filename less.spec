@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -22,6 +22,7 @@ Patch5:		lesspipe-1.60-no-o3read.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # lesspipe.sh requires file
 Requires:	file
+Suggests:	html2text
 
 %description
 The less utility is a text file browser that resembles more, but has
