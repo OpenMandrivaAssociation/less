@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -109,6 +109,8 @@ install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 
 %check
 cd lesspipe-%less_p_vers
+# make sure we're testing stuff with new less and not currently installed one
+export PATH=$PWD/../:$PATH
 make test
 
 %clean
