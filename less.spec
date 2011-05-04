@@ -5,7 +5,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
