@@ -1,11 +1,9 @@
-%define	name	less
-%define	version	436
-%define less_p_vers 1.60
+%define less_p_vers 1.72
 
 Summary:	A text file browser similar to more, but better
-Name:		%{name}
-Version:	%{version}
-Release:	%mkrel 5
+Name:		less
+Version:	444
+Release:	1
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -14,12 +12,11 @@ Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
 Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.gz
 Patch0:		less-374-manpages.patch
-Patch2:		lesspipe-1.60-posix.patch
+Patch2:		lesspipe-1.72-posix.patch
 Patch3:		less-382-fixline.patch
 Patch4:		less-392-Foption.patch
-#gw we don't have o3read, use the filter that comes with lesspipe
-Patch5:		lesspipe-1.60-no-o3read.patch
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+# If o3read isn't installed, use the filter that comes with lesspipe
+Patch5:		lesspipe-1.72-optional-o3read.patch
 # lesspipe.sh requires file
 Requires:	file
 Suggests:	html2text
@@ -36,15 +33,19 @@ files, and you'll use it frequently.
 
 %prep
 %setup -q -a 2
-%patch0 -p1
+%patch0 -p1 -b .manpages~
 cd lesspipe-%less_p_vers
-%patch2 -p1
-%patch5 -p1
+%patch2 -p1 -b .posix~
+%patch5 -p1 -b .o3read~
 cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
 chmod a+r lesspipe-%less_p_vers/*
 cp lesspipe-%less_p_vers/README README.lesspipe
+
+# Some source files have very odd permissions
+# that happen to be passed on to the debug package
+find . -name "*.[ch]" |xargs chmod 0644
 
 %build
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
@@ -75,6 +76,7 @@ case "\$CHARSET" in
 esac
 # Make a filter for less
 export LESSOPEN="|/usr/bin/lesspipe.sh %s"
+export LESS="-R"
 EOF
 
 cat << EOF > %buildroot%_sysconfdir/profile.d/20less.csh
@@ -88,6 +90,7 @@ if ! ( \$?LESSCHARSET ) then
 endif
 # Make a filter for less
 setenv LESSOPEN "|/usr/bin/lesspipe.sh %s"
+setenv LESS "-R"
 EOF
 
 cat << EOF > README.urpmi
@@ -111,7 +114,9 @@ install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 cd lesspipe-%less_p_vers
 # make sure we're testing stuff with new less and not currently installed one
 export PATH=$PWD/../:$PATH
-make test
+# FIXME The test suite in lesspipe 1.72 doesn't seem to be compatible
+# with perl 5.14 -- re-enable once lesspipe tests have been fixed.
+#make test
 
 %clean
 rm -rf %{buildroot}
