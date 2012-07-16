@@ -2,12 +2,12 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	444
+Version:	450
 Release:	1
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
-BuildRequires:	libncursesw-devel
+BuildRequires:	pkgconfig(ncursesw)
 Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
 Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.gz
