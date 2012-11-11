@@ -1,0 +1,11 @@
+--- lesspipe-1.72/lesspipe.sh.in.posix~	2011-11-17 07:17:57.000000000 +0100
++++ lesspipe-1.72/lesspipe.sh.in	2012-02-23 18:16:23.059914610 +0100
+@@ -73,7 +73,7 @@ else
+ fi
+ [[ -d "$tmpdir" ]] || exit 1
+ trap "rm -rf '$tmpdir'" 0
+-trap - PIPE
++trap - 13
+ 
+ unset iconv
+ iconv() {

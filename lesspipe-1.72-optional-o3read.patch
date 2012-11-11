@@ -1,0 +1,11 @@
+--- lesspipe-1.72/lesspipe.sh.in.o3read~	2012-02-23 18:17:35.000000000 +0100
++++ lesspipe-1.72/lesspipe.sh.in	2012-02-23 18:19:42.324912140 +0100
+@@ -777,7 +777,7 @@ isfinal() {
+     ppthtml "$2" | parsehtml -
+ #endif
+ #ifdef o3tohtml,unzip
+-  elif [[ "$PARSEHTML" = yes && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]] && cmd_exist unzip; then
++  elif [[ "$PARSEHTML" = yes && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]] && cmd_exist unzip && cmd_exist o3read; then
+     if cmd_exist o3tohtml; then
+       echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
+       istemp "unzip -avp" "$2" content.xml | o3tohtml | parsehtml -

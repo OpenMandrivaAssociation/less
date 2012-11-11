@@ -1,0 +1,17 @@
+--- less-392/screen.c.rasold	2005-10-21 13:54:22.000000000 +0200
++++ less-392/screen.c	2005-10-21 13:57:58.000000000 +0200
+@@ -1547,8 +1547,12 @@
+ #if !MSDOS_COMPILER
+ 	if (!no_keypad)
+ 		tputs(sc_e_keypad, sc_height, putchr);
+-	if (!no_init)
+-		tputs(sc_deinit, sc_height, putchr);
++	if (!no_init){
++		extern int quit_if_one_screen;
++		if(quit_if_one_screen == FALSE){
++			tputs(sc_deinit, sc_height, putchr);
++		}
++	}
+ #else
+ 	/* Restore system colors. */
+ 	SETCOLORS(sy_fg_color, sy_bg_color);

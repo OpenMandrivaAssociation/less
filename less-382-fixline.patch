@@ -1,0 +1,10 @@
+--- less-382/command.c.fixline	2004-02-04 05:52:26.000000000 +0100
++++ less-382/command.c	2005-09-05 09:24:03.000000000 +0200
+@@ -1168,6 +1168,7 @@
+ 				jump_forw();
+ 			else
+ 				jump_back(number);
++			repaint();
+ 			break;
+ 
+ 		case A_GOPOS:
