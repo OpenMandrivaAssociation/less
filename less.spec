@@ -3,7 +3,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	457
-Release:	1
+Release:	2
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -16,10 +16,12 @@ Patch3:		less-382-fixline.patch
 Patch4:		less-392-Foption.patch
 # If o3read isn't installed, use the filter that comes with lesspipe
 Patch5:		lesspipe-1.72-optional-o3read.patch
+Patch6:		less-457-use-odt2txt-in-stead-of-sxw2txt.patch
 BuildRequires:	pkgconfig(ncursesw)
 # lesspipe.sh requires file
 Requires:	file
 Suggests:	html2text
+Suggests:	odt2txt
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -40,6 +42,7 @@ cd lesspipe-%{less_p_vers}
 cd ..
 %patch3 -p1 -b .fixline
 %patch4 -p1 -b .Foption
+%patch6 -p1 -b .odt2xt~
 chmod a+r lesspipe-%{less_p_vers}/*
 cp lesspipe-%{less_p_vers}/README README.lesspipe
 
@@ -125,8 +128,10 @@ export PATH=$PWD/../:$PATH
 %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
 
-
 %changelog
+* Sat Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-2
+- drop bundled sxw2txt and use odt2txt in stead (P6)
+
 * Mon Jul 23 2012 Alexander Khrukin <akhrukin@mandriva.org> 451-1
 + Revision: 810768
 - version update 451

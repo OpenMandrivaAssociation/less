@@ -1,0 +1,56 @@
+--- less-457/lesspipe-1.72/configure.odt2txt~	2013-01-13 06:10:20.551187598 +0100
++++ less-457/lesspipe-1.72/configure	2013-01-13 06:10:37.791372868 +0100
+@@ -78,10 +78,9 @@ test:
+ 	./test.pl
+ install:
+ 	mkdir -p \$(PREFIX)/bin
+-	cp ./code2color ./sxw2txt ./lesspipe.sh \$(PREFIX)/bin
++	cp ./code2color ./lesspipe.sh \$(PREFIX)/bin
+ 	test -r \$(PREFIX)/share/man/man1 && cp ./lesspipe.1 \$(PREFIX)/share/man/man1
+ 	chmod 0755 \$(PREFIX)/bin/lesspipe.sh
+-	chmod 0755 \$(PREFIX)/bin/sxw2txt
+ 	chmod 0755 \$(PREFIX)/bin/code2color
+ clean:
+ 	mv Makefile Makefile.old
+--- less-457/lesspipe-1.72/contrib/bsdtar.patch.odt2txt~	2013-01-13 06:12:36.586653621 +0100
++++ less-457/lesspipe-1.72/contrib/bsdtar.patch	2013-01-13 06:12:49.408792153 +0100
+@@ -133,7 +133,7 @@
+ @@ -664,6 +730,10 @@
+    elif [[ "$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]* ]]; then
+      echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
+-     istemp sxw2txt "$2"
++     istemp odt2txt "$2"
+ +#elif o3tohtml
+ +  elif [[ "$PARSEHTML" = yes && -n "$bsdtarcmd" && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]]; then
+ +    echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
+--- less-457/lesspipe-1.72/lesspipe.sh.in.odt2txt~	2013-01-13 06:11:31.239947938 +0100
++++ less-457/lesspipe-1.72/lesspipe.sh.in	2013-01-13 06:11:50.525155911 +0100
+@@ -789,11 +789,11 @@ isfinal() {
+     fi
+ #elif unzip
+   elif [[ "$PARSEHTML" = yes && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]] && cmd_exist unzip; then
+-    if cmd_exist sxw2txt; then
++    if cmd_exist odt2txt; then
+       echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
+-      istemp sxw2txt "$2"
++      istemp odt2txt "$2"
+     else
+-      echo "==> install at least sxw2txt from the lesspipe package to see plain text in openoffice documents"
++      echo "==> install at least the odt2txt package to see plain text in openoffice documents"
+     fi
+ #endif
+ #ifdef isoinfo
+--- less-457/lesspipe-1.72/Makefile.odt2txt~	2013-01-13 06:12:12.528393550 +0100
++++ less-457/lesspipe-1.72/Makefile	2013-01-13 06:12:21.580491515 +0100
+@@ -10,10 +10,9 @@ test:
+ 	./test.pl
+ install:
+ 	mkdir -p $(PREFIX)/bin
+-	cp ./code2color ./sxw2txt ./lesspipe.sh $(PREFIX)/bin
++	cp ./code2color ./lesspipe.sh $(PREFIX)/bin
+ 	test -r $(PREFIX)/share/man/man1 && cp ./lesspipe.1 $(PREFIX)/share/man/man1
+ 	chmod 0755 $(PREFIX)/bin/lesspipe.sh
+-	chmod 0755 $(PREFIX)/bin/sxw2txt
+ 	chmod 0755 $(PREFIX)/bin/code2color
+ clean:
+ 	mv Makefile Makefile.old
