@@ -135,7 +135,7 @@ export PATH=$PWD/../:$PATH
 - filter out perl dependencies from code2color, less will check for perl itself
   first before trying to use it
 
-* Sat Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-2
+* Sun Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-2
 - drop bundled sxw2txt and use odt2txt in stead (P6)
 
 * Mon Jul 23 2012 Alexander Khrukin <akhrukin@mandriva.org> 451-1
