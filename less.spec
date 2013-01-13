@@ -3,7 +3,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	457
-Release:	2
+Release:	3
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
@@ -22,6 +22,8 @@ BuildRequires:	pkgconfig(ncursesw)
 Requires:	file
 Suggests:	html2text
 Suggests:	odt2txt
+
+%define	__noautoreqfiles %{_bindir}/code2color
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -129,6 +131,10 @@ export PATH=$PWD/../:$PATH
 %{_sysconfdir}/profile.d/*
 
 %changelog
+* Sun Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-3
+- filter out perl dependencies from code2color, less will check for perl itself
+  first before trying to use it
+
 * Sat Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-2
 - drop bundled sxw2txt and use odt2txt in stead (P6)
 
