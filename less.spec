@@ -99,7 +99,7 @@ EOF
 
 cat << EOF > README.urpmi
 This version of less includes lesspipe.sh from Wolfgang Friebel
-( http://www-zeuthen.desy.de/~friebel//unix/less/ ).
+( http://www-zeuthen.desy.de/~friebel/unix/less/ ).
 
 This enables you to view gz, bz2, lzma, zip, rpm and html files
 among others with less. It works by setting the LESSOPEN 
