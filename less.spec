@@ -47,6 +47,9 @@ cd ..
 %patch6 -p1 -b .odt2xt~
 chmod a+r lesspipe-%{less_p_vers}/*
 cp lesspipe-%{less_p_vers}/README README.lesspipe
+# faq
+cp %{SOURCE1} .
+
 
 # Some source files have very odd permissions
 # that happen to be passed on to the debug package
@@ -62,8 +65,6 @@ cd ..
 
 %install
 %makeinstall
-# faq
-install -m 644 %{SOURCE1} .
 cd lesspipe-%{less_p_vers}
 %makeinstall PREFIX=%{buildroot}%{_prefix}
 cd ..
@@ -132,6 +133,7 @@ export PATH=$PWD/../:$PATH
 
 %changelog
 * Sun Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-3
+- copy %%{SOURCE1} to build dir in %%prep rather than %%install
 - fix mixed-use-of-spaces-and-tabs
 - filter out perl dependencies from code2color, less will check for perl itself
   first before trying to use it
