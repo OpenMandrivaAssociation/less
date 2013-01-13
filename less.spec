@@ -71,12 +71,12 @@ mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 cat << EOF > %{buildroot}%{_sysconfdir}/profile.d/20less.sh
 CHARSET=\$(locale charmap 2> /dev/null)
 case "\$CHARSET" in 
-       UTF-8) 
-               export LESSCHARSET="\${LESSCHARSET:-utf-8}" 
-       ;; 
-       * ) 
-               export LESSCHARSET="\${LESSCHARSET:-koi8-r}" 
-       ;; 
+	UTF-8) 
+		export LESSCHARSET="\${LESSCHARSET:-utf-8}" 
+	;; 
+	*) 
+		export LESSCHARSET="\${LESSCHARSET:-koi8-r}" 
+	;; 
 esac
 # Make a filter for less
 export LESSOPEN="|/usr/bin/lesspipe.sh %s"
@@ -132,6 +132,7 @@ export PATH=$PWD/../:$PATH
 
 %changelog
 * Sun Jan 13 2013 Per Øyvind Karlsen <peroyvind@mandriva.org> 457-3
+- fix mixed-use-of-spaces-and-tabs
 - filter out perl dependencies from code2color, less will check for perl itself
   first before trying to use it
 
