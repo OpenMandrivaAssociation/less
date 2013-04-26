@@ -1,19 +1,19 @@
---- less-457/lesspipe-1.72/configure.odt2txt~	2013-01-13 06:10:20.551187598 +0100
-+++ less-457/lesspipe-1.72/configure	2013-01-13 06:10:37.791372868 +0100
-@@ -78,10 +78,9 @@ test:
- 	./test.pl
+--- less-458/lesspipe-1.82/configure.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.82/configure	2013-04-26 13:11:09.224276957 +0200
+@@ -81,10 +81,9 @@ test:
  install:
- 	mkdir -p \$(PREFIX)/bin
--	cp ./code2color ./sxw2txt ./lesspipe.sh \$(PREFIX)/bin
-+	cp ./code2color ./lesspipe.sh \$(PREFIX)/bin
- 	test -r \$(PREFIX)/share/man/man1 && cp ./lesspipe.1 \$(PREFIX)/share/man/man1
- 	chmod 0755 \$(PREFIX)/bin/lesspipe.sh
--	chmod 0755 \$(PREFIX)/bin/sxw2txt
- 	chmod 0755 \$(PREFIX)/bin/code2color
+ 	mkdir -p \$(DESTDIR)\$(PREFIX)/bin
+ 	mkdir -p \$(DESTDIR)\$(PREFIX)/share/man/man1
+-	cp ./code2color ./sxw2txt ./tarcolor ./lesspipe.sh \$(DESTDIR)\$(PREFIX)/bin
++	cp ./code2color ./tarcolor ./lesspipe.sh \$(DESTDIR)\$(PREFIX)/bin
+ 	cp ./lesspipe.1 \$(DESTDIR)\$(PREFIX)/share/man/man1
+ 	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/lesspipe.sh
+-	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/sxw2txt
+ 	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/code2color
+ 	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/tarcolor
  clean:
- 	mv Makefile Makefile.old
---- less-457/lesspipe-1.72/contrib/bsdtar.patch.odt2txt~	2013-01-13 06:12:36.586653621 +0100
-+++ less-457/lesspipe-1.72/contrib/bsdtar.patch	2013-01-13 06:12:49.408792153 +0100
+--- less-458/lesspipe-1.82/contrib/bsdtar.patch.odt2xt~	2013-01-13 11:56:44.000000000 +0100
++++ less-458/lesspipe-1.82/contrib/bsdtar.patch	2013-04-26 13:07:54.402712562 +0200
 @@ -133,7 +133,7 @@
  @@ -664,6 +730,10 @@
     elif [[ "$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]* ]]; then
@@ -23,34 +23,45 @@
  +#elif o3tohtml
  +  elif [[ "$PARSEHTML" = yes && -n "$bsdtarcmd" && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]]; then
  +    echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
---- less-457/lesspipe-1.72/lesspipe.sh.in.odt2txt~	2013-01-13 06:11:31.239947938 +0100
-+++ less-457/lesspipe-1.72/lesspipe.sh.in	2013-01-13 06:11:50.525155911 +0100
-@@ -789,11 +789,11 @@ isfinal() {
+--- less-458/lesspipe-1.82/lesspipe.sh.in.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.82/lesspipe.sh.in	2013-04-26 13:12:08.527535565 +0200
+@@ -859,19 +859,19 @@ isfinal() {
+     if cmd_exist o3tohtml; then
+       msg "append $sep to filename to view the OpenOffice or OpenDocument source"
+       istemp "unzip -avp" "$2" content.xml | o3tohtml | parsehtml -
+-    elif cmd_exist sxw2txt; then
++    elif cmd_exist odt2txt; then
+       msg "append $sep to filename to view the OpenOffice or OpenDocument source"
+-      istemp sxw2txt "$2"
++      istemp odt2txt "$2"
+     else
+-      msg "install at least sxw2txt from the lesspipe package to see plain text in openoffice documents"
++      msg "install at least the odt2txt package to see plain text in openoffice documents"
      fi
  #elif unzip
    elif [[ "$PARSEHTML" = yes && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]] && cmd_exist unzip; then
 -    if cmd_exist sxw2txt; then
 +    if cmd_exist odt2txt; then
-       echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
+       msg "append $sep to filename to view the OpenOffice or OpenDocument source"
 -      istemp sxw2txt "$2"
 +      istemp odt2txt "$2"
      else
--      echo "==> install at least sxw2txt from the lesspipe package to see plain text in openoffice documents"
-+      echo "==> install at least the odt2txt package to see plain text in openoffice documents"
+-      msg "install at least sxw2txt from the lesspipe package to see plain text in openoffice documents"
++      msg "install at least the odt2txt package to see plain text in openoffice documents"
      fi
  #endif
  #ifdef isoinfo
---- less-457/lesspipe-1.72/Makefile.odt2txt~	2013-01-13 06:12:12.528393550 +0100
-+++ less-457/lesspipe-1.72/Makefile	2013-01-13 06:12:21.580491515 +0100
-@@ -10,10 +10,9 @@ test:
- 	./test.pl
+--- less-458/lesspipe-1.82/Makefile.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.82/Makefile	2013-04-26 13:12:21.567372544 +0200
+@@ -11,10 +11,9 @@ test:
  install:
- 	mkdir -p $(PREFIX)/bin
--	cp ./code2color ./sxw2txt ./lesspipe.sh $(PREFIX)/bin
-+	cp ./code2color ./lesspipe.sh $(PREFIX)/bin
- 	test -r $(PREFIX)/share/man/man1 && cp ./lesspipe.1 $(PREFIX)/share/man/man1
- 	chmod 0755 $(PREFIX)/bin/lesspipe.sh
--	chmod 0755 $(PREFIX)/bin/sxw2txt
- 	chmod 0755 $(PREFIX)/bin/code2color
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+ 	mkdir -p $(DESTDIR)$(PREFIX)/share/man/man1
+-	cp ./code2color ./sxw2txt ./tarcolor ./lesspipe.sh $(DESTDIR)$(PREFIX)/bin
++	cp ./code2color ./tarcolor ./lesspipe.sh $(DESTDIR)$(PREFIX)/bin
+ 	cp ./lesspipe.1 $(DESTDIR)$(PREFIX)/share/man/man1
+ 	chmod 0755 $(DESTDIR)$(PREFIX)/bin/lesspipe.sh
+-	chmod 0755 $(DESTDIR)$(PREFIX)/bin/sxw2txt
+ 	chmod 0755 $(DESTDIR)$(PREFIX)/bin/code2color
+ 	chmod 0755 $(DESTDIR)$(PREFIX)/bin/tarcolor
  clean:
- 	mv Makefile Makefile.old

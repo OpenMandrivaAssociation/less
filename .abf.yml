@@ -1,3 +1,6 @@
-sources:
-  lesspipe-1.72.tar.gz: 971636765c32573eba6b9f63cda33e70301a7274
+removed_sources:
   less-457.tar.gz: 97bc4d03a5bbdc7f169a67f4760bf1da823194cf
+  lesspipe-1.72.tar.gz: 971636765c32573eba6b9f63cda33e70301a7274
+sources:
+  less-458.tar.gz: d5b07180d3dad327ccc8bc66818a31577e8710a2
+  lesspipe-1.82.tar.gz: 61a7657b20b910ed8219c6b77467e601f9a89894

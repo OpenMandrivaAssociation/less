@@ -1,9 +1,9 @@
-%define less_p_vers 1.72
+%define less_p_vers 1.82
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	457
-Release:	3
+Version:	458
+Release:	1
 License:	GPLv3+ or BSD-like
 Url:		http://www.greenwoodsoftware.com/less
 Group:		File tools
