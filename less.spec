@@ -3,7 +3,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	460
-Release:	6
+Release:	7
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
