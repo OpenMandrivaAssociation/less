@@ -2,8 +2,8 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	460
-Release:	7
+Version:	468
+Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
@@ -38,11 +38,12 @@ files, and you'll use it frequently.
 %prep
 %setup -q -a 2
 %patch0 -p1 -b .manpages~
-cd lesspipe-%{less_p_vers}
+pushd lesspipe-%{less_p_vers}
 %patch2 -p1 -b .posix~
 %patch5 -p1 -b .o3read~
-cd ..
-%patch3 -p1 -b .fixline
+popd
+
+%patch3 -p1 -b .linefix
 %patch4 -p1 -b .Foption
 %patch6 -p1 -b .odt2xt~
 chmod a+r lesspipe-%{less_p_vers}/*

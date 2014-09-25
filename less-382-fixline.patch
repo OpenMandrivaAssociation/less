@@ -1,10 +1,12 @@
---- less-382/command.c.fixline	2004-02-04 05:52:26.000000000 +0100
-+++ less-382/command.c	2005-09-05 09:24:03.000000000 +0200
-@@ -1168,6 +1168,7 @@
+diff --git a/command.c b/command.c
+index aacba2e..3426129 100755
+--- a/command.c
++++ b/command.c
+@@ -1330,6 +1330,7 @@ commands()
  				jump_forw();
  			else
  				jump_back(number);
 +			repaint();
  			break;
  
- 		case A_GOPOS:
+ 		case A_GOEND_BUF:
