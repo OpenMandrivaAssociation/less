@@ -2,7 +2,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	471
+Version:	474
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -54,6 +54,7 @@ cp %{SOURCE1} .
 # Some source files have very odd permissions
 # that happen to be passed on to the debug package
 find . -name "*.[ch]" |xargs chmod 0644
+chmod +x configure
 
 %build
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
