@@ -2,7 +2,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	474
+Version:	475
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -58,7 +58,7 @@ chmod +x configure
 
 %build
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
-%configure2_5x
+%configure
 %make
 cd lesspipe-%{less_p_vers}
 ./configure --yes
