@@ -1,5 +1,5 @@
---- less-458/lesspipe-1.82/configure.odt2xt~	2013-04-26 13:07:54.402712562 +0200
-+++ less-458/lesspipe-1.82/configure	2013-04-26 13:11:09.224276957 +0200
+--- less-458/lesspipe-1.83/configure.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.83/configure	2013-04-26 13:11:09.224276957 +0200
 @@ -81,10 +81,9 @@ test:
  install:
  	mkdir -p \$(DESTDIR)\$(PREFIX)/bin
@@ -12,8 +12,8 @@
  	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/code2color
  	chmod 0755 \$(DESTDIR)\$(PREFIX)/bin/tarcolor
  clean:
---- less-458/lesspipe-1.82/contrib/bsdtar.patch.odt2xt~	2013-01-13 11:56:44.000000000 +0100
-+++ less-458/lesspipe-1.82/contrib/bsdtar.patch	2013-04-26 13:07:54.402712562 +0200
+--- less-458/lesspipe-1.83/contrib/bsdtar.patch.odt2xt~	2013-01-13 11:56:44.000000000 +0100
++++ less-458/lesspipe-1.83/contrib/bsdtar.patch	2013-04-26 13:07:54.402712562 +0200
 @@ -133,7 +133,7 @@
  @@ -664,6 +730,10 @@
     elif [[ "$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]* ]]; then
@@ -23,8 +23,8 @@
  +#elif o3tohtml
  +  elif [[ "$PARSEHTML" = yes && -n "$bsdtarcmd" && ("$1" = *OpenDocument\ [CHMPST]* || "$1" = *OpenOffice\.org\ 1\.x\ [CIWdgpst]*) ]]; then
  +    echo "==> append $sep to filename to view the OpenOffice or OpenDocument source"
---- less-458/lesspipe-1.82/lesspipe.sh.in.odt2xt~	2013-04-26 13:07:54.402712562 +0200
-+++ less-458/lesspipe-1.82/lesspipe.sh.in	2013-04-26 13:12:08.527535565 +0200
+--- less-458/lesspipe-1.83/lesspipe.sh.in.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.83/lesspipe.sh.in	2013-04-26 13:12:08.527535565 +0200
 @@ -859,19 +859,19 @@ isfinal() {
      if cmd_exist o3tohtml; then
        msg "append $sep to filename to view the OpenOffice or OpenDocument source"
@@ -51,8 +51,8 @@
      fi
  #endif
  #ifdef isoinfo
---- less-458/lesspipe-1.82/Makefile.odt2xt~	2013-04-26 13:07:54.402712562 +0200
-+++ less-458/lesspipe-1.82/Makefile	2013-04-26 13:12:21.567372544 +0200
+--- less-458/lesspipe-1.83/Makefile.odt2xt~	2013-04-26 13:07:54.402712562 +0200
++++ less-458/lesspipe-1.83/Makefile	2013-04-26 13:12:21.567372544 +0200
 @@ -11,10 +11,9 @@ test:
  install:
  	mkdir -p $(DESTDIR)$(PREFIX)/bin
