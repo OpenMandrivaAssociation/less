@@ -2,7 +2,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	487
+Version:	488
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -30,7 +30,7 @@ The less utility is a text file browser that resembles more, but has
 more capabilities.  Less allows you to move backwards in the file as
 well as forwards.  Since less doesn't have to read the entire input file
 before it starts, less starts up more quickly than text editors (for
-example, vi). 
+example, vi).
 
 You should install less because it is a basic utility for viewing text
 files, and you'll use it frequently.
@@ -72,13 +72,13 @@ cd ..
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 cat << EOF > %{buildroot}%{_sysconfdir}/profile.d/20less.sh
 CHARSET=\$(locale charmap 2> /dev/null)
-case "\$CHARSET" in 
-	UTF-8) 
-		export LESSCHARSET="\${LESSCHARSET:-utf-8}" 
-	;; 
-	*) 
-		export LESSCHARSET="\${LESSCHARSET:-koi8-r}" 
-	;; 
+case "\$CHARSET" in
+	UTF-8)
+		export LESSCHARSET="\${LESSCHARSET:-utf-8}"
+	;;
+	*)
+		export LESSCHARSET="\${LESSCHARSET:-koi8-r}"
+	;;
 esac
 # Make a filter for less
 export LESSOPEN="|/usr/bin/lesspipe.sh %s"
@@ -104,7 +104,7 @@ This version of less includes lesspipe.sh from Wolfgang Friebel
 ( http://www-zeuthen.desy.de/~friebel/unix/less/ ).
 
 This enables you to view gz, bz2, lzma, zip, rpm and html files
-among others with less. It works by setting the LESSOPEN 
+among others with less. It works by setting the LESSOPEN
 environment variable, see the man pages for details.
 
 If you want to disable this behavior, either use 'unset LESSOPEN' or
