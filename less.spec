@@ -2,7 +2,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	488
+Version:	492
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -13,8 +13,6 @@ Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.t
 Patch0:		less-374-manpages.patch
 Patch2:		lesspipe-1.72-posix.patch
 Patch3:		less-382-fixline.patch
-Patch4:		less-392-Foption.patch
-# If o3read isn't installed, use the filter that comes with lesspipe
 Patch5:		lesspipe-1.72-optional-o3read.patch
 Patch6:		less-457-use-odt2txt-in-stead-of-sxw2txt.patch
 BuildRequires:	pkgconfig(ncursesw)
@@ -44,7 +42,6 @@ pushd lesspipe-%{less_p_vers}
 popd
 
 %patch3 -p1 -b .linefix
-%patch4 -p1 -b .Foption
 %patch6 -p1 -b .odt2xt~
 chmod a+r lesspipe-%{less_p_vers}/*
 cp lesspipe-%{less_p_vers}/README README.lesspipe
