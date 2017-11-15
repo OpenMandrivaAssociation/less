@@ -2,7 +2,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	520
+Version:	529
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
