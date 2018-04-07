@@ -1,9 +1,12 @@
+%global __reqires_exclude_from %{_docdir}|%{_bindir}/code2color
+%global __requires_exclude /usr/bin/perl|perl\\(.*)
+
 %define less_p_vers 1.83
 
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	529
-Release:	1
+Release:	2
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
@@ -20,8 +23,6 @@ BuildRequires:	pkgconfig(ncursesw)
 Requires:	file
 Suggests:	html2text
 Suggests:	odt2txt
-
-%define	__noautoreqfiles %{_bindir}/code2color
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -128,4 +129,3 @@ export PATH=$PWD/../:$PATH
 %{_bindir}/*
 %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
-
