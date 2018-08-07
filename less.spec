@@ -1,12 +1,9 @@
-%global __reqires_exclude_from %{_docdir}|%{_bindir}/code2color
-%global __requires_exclude /usr/bin/perl|perl\\(.*)
-
 %define less_p_vers 1.83
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	529
-Release:	2
+Version:	530
+Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
@@ -97,21 +94,6 @@ setenv LESSOPEN "|/usr/bin/lesspipe.sh %s"
 setenv LESS "-R"
 EOF
 
-cat << EOF > README.urpmi
-This version of less includes lesspipe.sh from Wolfgang Friebel
-( http://www-zeuthen.desy.de/~friebel/unix/less/ ).
-
-This enables you to view gz, bz2, lzma, zip, rpm and html files
-among others with less. It works by setting the LESSOPEN
-environment variable, see the man pages for details.
-
-If you want to disable this behavior, either use 'unset LESSOPEN' or
-use an alias ( alias less='less -l' ).
-
-less will open html files with lynx, then html2text, then cat if
-none of the previous were found.
-EOF
-
 install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 
 %check
@@ -125,7 +107,6 @@ export PATH=$PWD/../:$PATH
 %files
 %doc README NEWS README.lesspipe
 %doc faq_less.html lesspipe-%{less_p_vers}/{ChangeLog,german.txt,TODO}
-%doc README.urpmi
 %{_bindir}/*
 %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
