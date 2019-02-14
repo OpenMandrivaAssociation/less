@@ -1,5 +1,6 @@
 %define less_p_vers 1.83
 # (tpg) get rid of that nasy perl or split packages
+%global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
 
 Summary:	A text file browser similar to more, but better
