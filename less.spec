@@ -1,11 +1,11 @@
-%define less_p_vers 1.83
+%define less_p_vers 1.85
 # (tpg) get rid of that nasy perl or split packages
 %global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	563
+Version:	581
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -40,10 +40,10 @@ files, and you'll use it frequently.
 pushd lesspipe-%{less_p_vers}
 %patch2 -p1 -b .posix~
 %patch5 -p1 -b .o3read~
+%patch6 -p1 -b .odt2xt~
 popd
 
 %patch3 -p1 -b .linefix
-%patch6 -p1 -b .odt2xt~
 chmod a+r lesspipe-%{less_p_vers}/*
 cp lesspipe-%{less_p_vers}/README README.lesspipe
 # faq
