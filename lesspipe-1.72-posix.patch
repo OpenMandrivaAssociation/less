@@ -1,7 +1,8 @@
---- lesspipe-1.72/lesspipe.sh.in.posix~	2011-11-17 07:17:57.000000000 +0100
-+++ lesspipe-1.72/lesspipe.sh.in	2012-02-23 18:16:23.059914610 +0100
-@@ -73,7 +73,7 @@ else
- fi
+diff -up lesspipe-1.87/lesspipe.sh.in.posix~ lesspipe-1.87/lesspipe.sh.in
+--- lesspipe-1.87/lesspipe.sh.in.posix~	2021-08-08 02:31:27.599468736 +0200
++++ lesspipe-1.87/lesspipe.sh.in	2021-08-08 02:32:01.036543993 +0200
+@@ -71,7 +71,7 @@ nexttmp () {
+ }
  [[ -d "$tmpdir" ]] || exit 1
  trap "rm -rf '$tmpdir'" 0
 -trap - PIPE

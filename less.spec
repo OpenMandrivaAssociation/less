@@ -1,4 +1,4 @@
-%define less_p_vers 1.85
+%define less_p_vers 1.87
 # (tpg) get rid of that nasy perl or split packages
 %global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
@@ -6,13 +6,13 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	590
-Release:	1
+Release:	2
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
 Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
-Source2:	http://www-zeuthen.desy.de/~friebel/unix/less/lesspipe-%{less_p_vers}.tar.gz
+Source2:	https://github.com/wofr06/lesspipe/archive/refs/tags/%{less_p_vers}.tar.gz
 Patch0:		less-374-manpages.patch
 Patch2:		lesspipe-1.72-posix.patch
 Patch3:		less-382-fixline.patch
