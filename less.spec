@@ -111,5 +111,5 @@ export PATH=$PWD/../:$PATH
 %doc README NEWS README.lesspipe
 %doc faq_less.html lesspipe-%{less_p_vers}/{ChangeLog,german.txt,TODO}
 %{_bindir}/*
-%{_mandir}/man1/*
+%doc %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
