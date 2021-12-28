@@ -1,4 +1,4 @@
-%define less_p_vers 1.87
+%define less_p_vers 2.00
 # (tpg) get rid of that nasy perl or split packages
 %global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
@@ -6,18 +6,15 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	598
-Release:	1
+Release:	2
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
 Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}.tar.gz
 Source1:	faq_less.html
-Source2:	https://github.com/wofr06/lesspipe/archive/refs/tags/%{less_p_vers}.tar.gz
+Source2:	https://github.com/wofr06/lesspipe/archive/refs/tags/v%{less_p_vers}.tar.gz
 Patch0:		less-374-manpages.patch
-Patch2:		lesspipe-1.72-posix.patch
 Patch3:		less-382-fixline.patch
-Patch5:		lesspipe-1.72-optional-o3read.patch
-Patch6:		less-457-use-odt2txt-in-stead-of-sxw2txt.patch
 BuildRequires:	pkgconfig(ncursesw)
 # lesspipe.sh requires file
 Requires:	file
@@ -35,17 +32,9 @@ You should install less because it is a basic utility for viewing text
 files, and you'll use it frequently.
 
 %prep
-%setup -q -a 2
-%patch0 -p1 -b .manpages~
-pushd lesspipe-%{less_p_vers}
-%patch2 -p1 -b .posix~
-%patch5 -p1 -b .o3read~
-%patch6 -p1 -b .odt2xt~
-popd
-
-%patch3 -p1 -b .linefix
+%autosetup -p1 -a 2
 chmod a+r lesspipe-%{less_p_vers}/*
-cp lesspipe-%{less_p_vers}/README README.lesspipe
+cp lesspipe-%{less_p_vers}/README.md README.lesspipe.md
 # faq
 cp %{SOURCE1} .
 
@@ -99,16 +88,8 @@ EOF
 
 install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 
-%check
-cd lesspipe-%{less_p_vers}
-# make sure we're testing stuff with new less and not currently installed one
-export PATH=$PWD/../:$PATH
-# FIXME The test suite in lesspipe 1.72 doesn't seem to be compatible
-# with perl 5.14 -- re-enable once lesspipe tests have been fixed.
-#make test
-
 %files
-%doc README NEWS README.lesspipe
+%doc README NEWS README.lesspipe.md
 %doc faq_less.html lesspipe-%{less_p_vers}/{ChangeLog,german.txt,TODO}
 %{_bindir}/*
 %doc %{_mandir}/man1/*
