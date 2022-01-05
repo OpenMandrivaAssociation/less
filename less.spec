@@ -1,4 +1,4 @@
-%define less_p_vers 2.00
+%define less_p_vers 2.01
 # (tpg) get rid of that nasy perl or split packages
 %global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
@@ -6,7 +6,7 @@
 Summary:	A text file browser similar to more, but better
 Name:		less
 Version:	598
-Release:	2
+Release:	3
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
@@ -46,15 +46,16 @@ chmod +x configure
 %build
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
 %configure
-%make
+%make_build
 cd lesspipe-%{less_p_vers}
 ./configure --yes
+%make_build PREFIX=%{_prefix}
 cd ..
 
 %install
-%makeinstall
+%make_install
 cd lesspipe-%{less_p_vers}
-%makeinstall PREFIX=%{buildroot}%{_prefix}
+%make_install PREFIX=%{_prefix}
 cd ..
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 cat << EOF > %{buildroot}%{_sysconfdir}/profile.d/20less.sh
@@ -94,3 +95,5 @@ install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 %{_bindir}/*
 %doc %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
+%{_sysconfdir}/bash_completion.d/*
+%{_datadir}/zsh/site-functions/_less
