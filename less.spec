@@ -5,8 +5,8 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	598
-Release:	3
+Version:	600
+Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		http://www.greenwoodsoftware.com/less
