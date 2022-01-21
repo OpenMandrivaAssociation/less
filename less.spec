@@ -1,4 +1,4 @@
-%define less_p_vers 2.01
+%define less_p_vers 2.02
 # (tpg) get rid of that nasy perl or split packages
 %global __requires_exclude perl\\(strict\\)|perl\\(warnings\\)
 %global __requires_exclude_from ^(.%{_bindir}/tarcolor|%{_bindir}/code2color)$
