@@ -4,7 +4,7 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	633
+Version:	643
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
