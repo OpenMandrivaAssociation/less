@@ -1,10 +1,10 @@
-%undefine beta
+%define beta beta
 
 %global optflags %{optflags} -Oz
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	643
+Version:	657
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
@@ -13,6 +13,7 @@ Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}%{?beta:-%{beta
 Patch0:		less-374-manpages.patch
 Patch3:		less-382-fixline.patch
 BuildRequires:	pkgconfig(ncursesw)
+BuildSystem:	autotools
 
 %description
 The less utility is a text file browser that resembles more, but has
@@ -24,21 +25,16 @@ example, vi).
 You should install less because it is a basic utility for viewing text
 files, and you'll use it frequently.
 
-%prep
-%autosetup -p1
-
+%prep -a
 # Some source files have very odd permissions
 # that happen to be passed on to the debug package
 find . -name "*.[ch]" |xargs chmod 0644
 chmod +x configure
 
-%build
+%conf -p
 CFLAGS=$(echo "%{optflags} -DHAVE_LOCALE" | sed -e s/-fomit-frame-pointer//)
-%configure
-%make_build
 
-%install
-%make_install
+%install -a
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 cat << EOF > %{buildroot}%{_sysconfdir}/profile.d/20less.sh
 export LESS="-R"
