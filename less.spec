@@ -1,10 +1,10 @@
-%define beta beta
+#define beta beta
 
 %global optflags %{optflags} -Oz
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	658
+Version:	661
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
