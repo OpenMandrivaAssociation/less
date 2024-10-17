@@ -8,7 +8,7 @@ Version:	661
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
-Url:		http://www.greenwoodsoftware.com/less
+Url:		https://www.greenwoodsoftware.com/less
 Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}%{?beta:-%{beta}}.tar.gz
 Patch0:		less-374-manpages.patch
 Patch3:		less-382-fixline.patch
