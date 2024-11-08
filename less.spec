@@ -4,15 +4,16 @@
 
 Summary:	A text file browser similar to more, but better
 Name:		less
-Version:	661
+Version:	668
 Release:	1
 License:	GPLv3+ or BSD-like
 Group:		File tools
 Url:		https://www.greenwoodsoftware.com/less
-Source0:	http://www.greenwoodsoftware.com/less/%{name}-%{version}%{?beta:-%{beta}}.tar.gz
+Source0:	https://www.greenwoodsoftware.com/less/%{name}-%{version}%{?beta:-%{beta}}.tar.gz
 Patch0:		less-374-manpages.patch
 Patch3:		less-382-fixline.patch
 BuildRequires:	pkgconfig(ncursesw)
+BuildRequires:	slibtool
 BuildSystem:	autotools
 
 %description
@@ -51,3 +52,4 @@ install -m644 lessecho.1 %{buildroot}%{_mandir}/man1
 %{_bindir}/*
 %doc %{_mandir}/man1/*
 %{_sysconfdir}/profile.d/*
+
