@@ -1,4 +1,4 @@
-%define beta beta
+#define beta beta
 
 %global optflags %{optflags} -Oz
 
